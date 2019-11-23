@@ -7,3 +7,8 @@
 .display-1, .display-2, .display-3, .display-4, .display {
     font-family: "Merienda", sans-serif;
 }
+
+hr{
+    border: none;
+    border-top: white solid 1px;
+}

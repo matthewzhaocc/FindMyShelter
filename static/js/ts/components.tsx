@@ -3,12 +3,16 @@
 // Card Component 
 class AttributeCard extends Mesh.Component {
     render(){
-        const data = (
-            <div className="container">
-                
+        return (
+            <div className="card" style="width: 18rem; display: inline-block;">
+                <img className="card-img-top" src={this.attr("img")}/>
+                <div className="card-body">
+                    <h2>{this.attr("title")}</h2>
+                    <p className="card-text">{this.attr("text")}</p>
+                </div>
             </div>
         );
-
-        return data;
     }
 }
+
+AttributeCard.define("feature-card");
