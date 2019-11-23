@@ -10,6 +10,7 @@ import pymongo
 
 app = flask.Flask(__name__)
 
+userid = 0
 @app.route('/',methods = ['GET'])
 def rootPage():
     return flask.render_template('index.html')
@@ -20,7 +21,8 @@ def login():
         return flask.render_template('login.html')
     if flask.requests.method == 'POST':
         userdata = {
-
+            'user':flask.requests.form['user'],
+            'password':hashlib.sha512(str.encode(flask.requests.form['password'])).hexdigest()
         }
 
 @app.route('/register',methods = ['GET','POST'])
