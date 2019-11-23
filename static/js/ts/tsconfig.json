@@ -1,0 +1,10 @@
+{
+    "compilerOptions": { 
+        "jsxFactory": "Mesh.ce",
+        "jsx": "react",
+        "outDir": "../"
+    },
+    "files": [
+        "components.tsx"
+    ]
+}

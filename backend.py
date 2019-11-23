@@ -18,6 +18,10 @@ def rootPage():
 def login():
     if flask.requests.method == 'GET':
         return flask.render_template('login.html')
+    if flask.requests.method == 'POST':
+        userdata = {
+
+        }
 
 @app.route('/register',methods = ['GET','POST'])
 def register():
