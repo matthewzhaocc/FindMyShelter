@@ -31,11 +31,10 @@ def login():
         ans = control.getUser()
         res = {
             'usertype':ans['usertype'],
-            'loginstatus':ans['password']==userdata['password']
+            'loginstatus':ans['password']==userdata['password'],
+            'username':flask.request.form['uskername']
         }
         return flask.jsonify(res)
-
-
 
 @app.route('/register',methods = ['GET','POST'])
 def register():
@@ -52,4 +51,13 @@ def register():
     controller.newUser(payload,userid)
     return flask.redirect(flask.url_for('/login'))
 
+@app.route('/company/dashboard',methods=['GET','POST'])
+def companyDashboard():
+    if flask.request.method == 'GET':
+        return flask.render_template('companydashboard.html')
+
+@app.route('/user/dashboard',methods=['GET','POST'])
+def userDashboard():
+    if flask.request.method == 'POST':
+        return flask.render_template('userdashboard.html')
 app.run(host='0.0.0.0',port=5000,debug=True)
