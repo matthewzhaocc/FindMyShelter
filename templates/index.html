@@ -57,7 +57,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form><div class="modal-body">
+            <form action="javascript:;" onsubmit="signup(this)"><div class="modal-body">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" required name="username" placeholder="Your name throughout the app...">
                 <hr>
@@ -76,7 +76,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Signup</button>
+                <button type="submit" class="btn btn-success">Signup</button>
             </div></form>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form><div class="modal-body">
+            <form action="javascript:;" onsubmit="login(this)"><div class="modal-body">
                 <label for="username">Username:</label>
                 <input required type="text" class="form-control" name="username" placeholder="Your name throughout the app...">
                 <hr>
@@ -111,7 +111,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </div></form>
             </div>
         </div>
@@ -120,7 +120,7 @@
     <!-- TOO MUCH JS -->
     <script src="https://kit.fontawesome.com/b8185e1d28.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/raghav-misra/mesh/lib/prod/polyfill.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/raghav-misra/mesh/lib/prod/mesh.js"></script>
+    <script src="/static/js/mesh.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

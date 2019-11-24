@@ -12,7 +12,6 @@ from jsonStoreControllerUser.controller import jsonStoreController
 
 app = flask.Flask(__name__)
 
-global userid
 
 userid = 0
 
@@ -20,27 +19,26 @@ userid = 0
 def rootPage():
     return flask.render_template('index.html')
 
-@app.route('/login',methods = ['GET','POST'])
+@app.route('/login', methods = ['POST'])
 def login():
-    if flask.requests.method == 'GET':
-        return flask.render_template('login.html')
-    if flask.requests.method == 'POST':
-        userdata = {
-            'usertype':flask.request.form['usertype'],
-            'username':flask.request.form['username'],
-            'password':hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
-        }
-        control = jsonStoreController()
-        ans = control.getUser()
-        res = {
-            'usertype':ans['usertype'],
-            'loginstatus':ans['password']==userdata['password'],
-            'username':flask.request.form['uskername']
-        }
-        return flask.jsonify(res)
+    userdata = {
+        'usertype': flask.request.form['usertype'],
+        'username': flask.request.form['username'],
+        'password': hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
+    }
+    control = jsonStoreController()
+    ans = control.getUser(userdata['username'])
+   
+    res = {
+        'usertype':ans['usertype'],
+        'loginstatus':str(ans['password']==userdata['password']),
+        'username':userdata['username']
+    }
+    return flask.jsonify(res)
 
 @app.route('/register',methods = ['GET','POST'])
 def register():
+    global userid
     if flask.request.method == 'GET':
         return flask.render_template('register.html')
     if flask.request.method == 'POST':
@@ -52,7 +50,7 @@ def register():
             'password':hashlib.sha512(str.encode(flask.request.form['username'])).hexdigest
         }
         controller.newUser(payload,userid)
-        return flask.redirect(flask.url_for('/login'))
+        return flask.redirect(flask.url_for('login'))
 
 @app.route('/company/dashboard',methods=['GET','POST'])
 def companyDashboard():

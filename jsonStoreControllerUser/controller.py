@@ -6,7 +6,7 @@ class jsonStoreController:
         self.url = json.load(open('config.json'))['jsonstoreURL']
 
     def newUser(self,jsonPayload,id):
-        requests.post(url=self.url+'/users/'+id,data=jsonPayload)
+        requests.post(url=self.url+'/users/'+str(id),data=jsonPayload)
     
     def getUser(self,username):
         res = requests.get(url=self.url+'/users?orderKey=username&filterValue='+username)

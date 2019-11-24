@@ -1,35 +1,28 @@
-function signup(form: HTMLFormElement){
+function signup(form) {
     // Build the FormData from HTML Form:
-    const formData: FormData = new FormData(form);
-
+    var formData = new FormData(form);
     // Create XMLHttpRequest:
-    let req: XMLHttpRequest = new XMLHttpRequest();
+    var req = new XMLHttpRequest();
     req.open("POST", "/register");
-
-    req.onreadystatechange = function() {
+    req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
             alert(req.responseText);
         }
-    }
-
+    };
     // Send Request:
     req.send(formData);
 }
-
-function login(form: HTMLFormElement){
+function login(form) {
     // Build the FormData from HTML Form:
-    const formData: FormData = new FormData(form);
-
+    var formData = new FormData(form);
     // Create XMLHttpRequest:
-    let req: XMLHttpRequest = new XMLHttpRequest();
+    var req = new XMLHttpRequest();
     req.open("POST", "/login");
-
-    req.onreadystatechange = function() {
+    req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
             alert(req.responseText);
         }
-    }
-
+    };
     // Send Request:
     req.send(formData);
 }
