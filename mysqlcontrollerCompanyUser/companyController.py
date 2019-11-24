@@ -6,9 +6,9 @@ import json
 class companyController:
     def __init__(self):
         self.conn = mysql.connector.connect(
-            host='0.0.0.0',
+            host='localhost',
             user='matthew',
-            database='companyuser',
+            database='login',
             passwd='ABab12$$'
         )
         self.newCompanyUserTemplate = 'INSERT INTO companyUserDatabase (username,password,usertype,details) VALUES (%s,%s,%s,%s)'

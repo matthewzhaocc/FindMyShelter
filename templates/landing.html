@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <title>FindMyShelter - Home</title>
 </head>
-<body>
+<body onload="window.moreOpen = false;">
     <!-- Background Overlay -->
     <div id="background"></div>
 
@@ -74,18 +74,26 @@
                 <label>Organization Or User?</label>
                 <br>
                 <div class="container">
-                    <input checked type="radio" label="User in need." class="form-check-input" id="signUpUser" name="usertype" value="user">
+                    <input checked onclick="if(moreOpen) { document.getElementById('invisMoreButton').click(); moreOpen = false; }" type="radio" label="User in need." class="form-check-input" id="signUpUser" name="usertype" value="user">
                 </div>
                 <br>
                 <div class="container">
-                    <input type="radio" onclick="document.getElementById('invisMoreButton').click()" label="Organization" class="form-check-input" name="usertype" id="signUpOrg" value="org">
+                    <input type="radio" onclick="if(!moreOpen) { document.getElementById('invisMoreButton').click(); moreOpen = true; }" label="Organization" class="form-check-input" name="usertype" id="signUpOrg" value="org">
                 </div><br>
                 <br>
                 <a class="btn btn-primary" data-toggle="collapse" id="invisMoreButton" href="#moreDetails" hidden="true" aria-hidden="true">Invisible Toggle</a>
-                <div class="collapse multi-collapse" id="moreDetails">
-                    <div class="card card-body">
-                        <input type="tel"/>
-                    </div>
+                <div class="collapse multi-collapse card card-body" id="moreDetails" open="true">
+                    <label>Phone #:</label>
+                    <input id="phoneIgnore" class="form-control" type="text" required placeholder="e.g. +1 (234) 567-890">
+                    <hr>
+                    <label>Website:</label>
+                    <input id="websiteIgnore" class="form-control" type="text" required placeholder="e.g. https://example.com">
+                    <hr>
+                    <label>Email:</label>
+                    <input id="emailIgnore" class="form-control" type="email" required placeholder="e.g. foo.bar@example.com">
+                    <hr>
+                    <label>Address:</label>
+                    <input id="addressIgnore" class="form-control" type="text" required placeholder="e.g. 69 Foo Bar Plaza, Spam, Eggs">
                 </div>
             </div>
             <div class="modal-footer">

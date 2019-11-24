@@ -1,7 +1,30 @@
 function signup(form: HTMLFormElement){
+    let detailsCont = document.querySelector("#moreDetails");
+
+    // Render before disabling
+    const collected = {
+        'phone': (detailsCont.querySelector("#phoneIgnore") as HTMLInputElement)["value"],
+        'website': (detailsCont.querySelector("#websiteIgnore") as HTMLInputElement)["value"],
+        'email': (detailsCont.querySelector("#emailIgnore") as HTMLInputElement)["value"],
+        'address': (detailsCont.querySelector("#addressIgnore") as HTMLInputElement)["value"]
+    }
+
+    // Disable Details Input:
+    detailsCont.querySelectorAll("input").forEach(element => {
+        element.disabled = true;
+    });
+
     // Build the FormData from HTML Form:
     const formData: FormData = new FormData(form);
-    formData.set("details", "{}");
+
+    // Collect details data:
+    if(formData.get("usertype") == "org"){
+        formData.set("details", JSON.stringify(collected))
+    } 
+    else {
+        formData.set("details", "{}");
+    }
+
     // Create XMLHttpRequest:
     let req: XMLHttpRequest = new XMLHttpRequest();
     req.open("POST", "/register");

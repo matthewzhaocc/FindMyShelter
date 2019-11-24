@@ -9,7 +9,7 @@
     <title>FindMyShelter - Home</title>
 </head>
 <body>
-    <span id="wtf" style="display: none; visibility: hidden;" hidden="true" aria-hidden="true">{{ data }}</span>
+    <span id="wtf" style="display: none; visibility: hidden;" hidden="true" aria-hidden="true">{{ details }}</span>
     <!-- Background Overlay -->
     <div id="background"></div>
 
@@ -22,7 +22,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">{{ username }}</h1>
-            <p class="lead">Tel: {{ phone }} | Address: {{ address }}</p>
+            <p class="lead">Tel: {{ phone }} | Address: {{ address }} | Email: {{ emai }}</p>
             <hr>
             <div class="btn-group">
                 <a data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg" href="#" role="button">Login</a>

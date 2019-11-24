@@ -5,6 +5,7 @@ import json
 import string
 import hashlib
 import random
+import base64
 
 from jsonStoreControllerUser.controller import jsonStoreController
 from mysqlcontrollerCompanyUser.companyController import companyController
@@ -28,12 +29,14 @@ def login():
     control = jsonStoreController()
     ans = control.getPassword(userdata['username'])
    
-    res = {
+    ree = {
         'usertype':ans[1],
         'loginstatus':str(ans[0]==userdata["password"]),
         'username':userdata['username']
     }
-    return flask.jsonify(res)
+    res = flask.make_response(' ')
+    res.set_cookie('info',base64.b64encode(str.encode(json.dumps(ree))))
+    return res
 
 @app.route('/register',methods = ['POST'])
 def register():
@@ -67,4 +70,7 @@ def companyDashboard():
         })
     })
 
+@app.route('/searchengine')
+def searchengine():
+    pass
 app.run(host='0.0.0.0',port=5000,debug=True)
