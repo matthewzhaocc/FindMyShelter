@@ -29,10 +29,11 @@ def login():
     control = jsonStoreController()
     if userdata["usertype"] == 'org':
         control = companyController()
+        
     ans = control.getPassword(userdata['username'])
    
     ree = {
-        'usertype':ans[1],
+        'usertype':userdata['usertype'],
         'loginstatus':str(ans[0]==userdata["password"]),
         'username':userdata['username']
     }

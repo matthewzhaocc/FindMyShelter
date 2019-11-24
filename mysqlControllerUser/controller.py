@@ -19,7 +19,6 @@ class jsonStoreController:
         val = (jsonPayload['username'],jsonPayload['password'],jsonPayload['usertype'],jsonPayload['shelter'])
         self.cursor.execute(self.newUserTemplate,val)
         self.conn.commit()
-        self.conn.close()
 
     def getPassword(self,username):
         val = (username,)

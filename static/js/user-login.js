@@ -25,7 +25,8 @@ function signup(form) {
     req.open("POST", "/register");
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
-            alert(req.responseText);
+            alert("Your account has been added! Now log in with it!");
+            //location.reload();
         }
     };
     // Send Request:
@@ -39,12 +40,9 @@ function login(form) {
     req.open("POST", "/login");
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
-            postLogin(req.responseText);
+            alert
         }
     };
     // Send Request:
     req.send(formData);
-}
-function postLogin(text) {
-    window.sessionStorage.setItem("sessionKey", btoa(text));
 }
