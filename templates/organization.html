@@ -38,7 +38,7 @@
             <h1 class="display">{{ shelter_data[0] }}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Location: {{ shelter_data[1] }} | Open <input type="checkbox" checked={{ shelter_data[3] }} class="isOpen"></h5>
+            <h5 class="card-title">Location: {{ shelter_data[1] }}</h5>
             <p class="card-text">Remaining Capacity is {{ shelter_data[2] }}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
@@ -84,7 +84,7 @@ function build(frm){
             alert("Added shelter!");
     }
     req.send(frmdata);
-}
+}}
 </script>
 
     <!-- TOO MUCH JS -->

@@ -12,7 +12,7 @@ class shelterController:
         )
         self.cursor = _conn.cursor()
         self.conn = _conn
-        self.newShelterTemplate = 'INSERT INTO shelterLocations (Organization,name,location,Capacity,open) VALUES (%s,%s.%s.%s,%s)'
+        self.newShelterTemplate = 'INSERT INTO shelterLocations (Organization,name,location,Capacity,open) VALUES (%s,%s,%s,%s,%s)'
         self.switchShelterStateTemplate = 'UPDATE shelterLocations open=%s WHERE name=%s'
         self.getStateTemplate = 'SELECT open FROM shelterLocations WHERE name=%s'
         self.getInfo = 'SELECT Organization,location,Capacity,open FROM shelterLocations WHERE=%s'
@@ -24,6 +24,11 @@ class shelterController:
         self.cursor.execute(self.newShelterTemplate,val)
         self.conn.commit()
     
+    def delOneCap(self,name):
+        val = (name,)
+        self.cursor.execute(self.capacityMinusOne,val)
+        self.conn.commit()
+        
     def switchShelterState(self,name,state):
             val = (name,not state)
             self.cursor.execute(self.switchShelterStateTemplate,val)

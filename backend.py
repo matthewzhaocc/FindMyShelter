@@ -71,9 +71,11 @@ def newShelter():
         'Organization':json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['username'],
         'name':flask.request.form['name'],
         'open':True,
-        'capacity':flask.request.form['']
+        'Capacity':flask.request.form['capacity'],
+        'location':flask.request.form['location']
         }
     controller = shelterController()
+    print(payload)
     controller.newShelter(payload)
     return ' '
 
@@ -108,8 +110,6 @@ def searchengine():
     resjson = {
 
     }
-
-    elements = ['name','location','Capacity']
     for i in range(len(allShelter)):
         temp = {
             'name':allShelter[i][0],
@@ -119,4 +119,13 @@ def searchengine():
         resjson.update({'shelter'+str(i):temp})
     return flask.render_template('search.html',shelters=resjson)
 
+@app.route('/newReservations',methods = ['POST'])
+def newReservations():
+    payload = {
+        'name':flask.request.form['name']
+    }
+    controller = shelterController()
+    controller.delOneCap(flask.request.form['name'])
+    return ' '
+    
 app.run(host='0.0.0.0',port=5000,debug=True)
