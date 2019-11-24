@@ -16,7 +16,7 @@ class shelterController:
         self.switchShelterStateTemplate = 'UPDATE shelterLocations open=%s WHERE name=%s'
         self.getStateTemplate = 'SELECT open FROM shelterLocations WHERE name=%s'
         self.getInfo = 'SELECT Organization,location,Capacity,open FROM shelterLocations WHERE=%s'
-        self.capacityMinusOne = 'UPDATE shelterLocations Capacity = Capcity - 1 WHERE name=%s'
+        self.capacityMinusOne = 'UPDATE shelterLocations Capacity = Capacity - 1 WHERE name=%s'
         self.capacityAddOne = 'UPDATE shelterLocations Capacity = Capacity + 1 WHERE name=%s'
         self.getAllShelterFromCompanyTem = 'SELECT name,location,Capacity,open FROM shelterLocations WHERE Organization=%s'
     def newShelter(self,jsonPayload):
@@ -26,7 +26,7 @@ class shelterController:
         self.conn.commit()
     
     def delOneCap(self,name):
-        val = (name,)
+        val = (name.replace('\\', ''),)
         self.cursor.execute(self.capacityMinusOne,val)
         self.conn.commit()
         

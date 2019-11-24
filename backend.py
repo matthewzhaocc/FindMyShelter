@@ -107,13 +107,19 @@ def searchengine():
     
     return flask.render_template('search.html',shelters=allShelter)
 
-@app.route('/newReservations',methods = ['POST'])
-def newReservations():
+@app.route('/newReservations/<shelter>',methods = ['GET'])
+def newReservations(shelter):
+    num1 = flask.request.cookies.get('info')
+    num2 = base64.b64decode(str.encode(num1))
+    num3 = json.loads(num2)
     payload = {
-        'name':flask.request.form['name']
+        'name':shelter,
+        'user':num3['username']
     }
     controller = shelterController()
-    controller.delOneCap(flask.request.form['name'])
+    controller.delOneCap(payload['name'])
+    controller = jsonStoreController()
+    controller.changeShelter(payload['user'],payload['name'])
     return ' '
     
 app.run(host='0.0.0.0',port=5000,debug=True)

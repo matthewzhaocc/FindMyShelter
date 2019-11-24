@@ -23,7 +23,7 @@ class jsonStoreController:
     def getPassword(self,username):
         val = (username,)
         self.cursor.execute(self.getPasswordTemplate,val)
-        return self.cursor.fetchone()
+        return self.cursor.fetchall()[0]
     
     def newShelter(self,username,sheltername):
         val=(sheltername,username)

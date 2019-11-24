@@ -40,7 +40,7 @@
         <div class="card-body">
             <h5 class="card-title">Location: {{ shelter_data[1] }}</h5>
             <p class="card-text">Remaining Capacity is {{ shelter_data[2] }}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a onclick="location.href = `/newReservations/${document.querySelector('span').innerText.trim()}`" class="btn btn-primary">Reserve<span hidden style="display:none;">{{ shelter_data[0] }}</span></a>
         </div>
     </div>
     {% endfor %}
