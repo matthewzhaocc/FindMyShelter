@@ -23,7 +23,8 @@ var AttributeCard = /** @class */ (function (_super) {
             Mesh.ce("img", { className: "card-img-top", src: this.attr("img") }),
             Mesh.ce("div", { className: "card-body" },
                 Mesh.ce("h2", null, this.attr("title")),
-                Mesh.ce("p", { className: "card-text" }, this.attr("text")))));
+                Mesh.ce("p", { className: "card-text" }, this.attr("text")),
+                Mesh.ce("a", { className: "btn btn-primary", href: this.attr("href") }, this.attr("btn-text")))));
     };
     return AttributeCard;
 }(Mesh.Component));

@@ -9,6 +9,9 @@ class AttributeCard extends Mesh.Component {
                 <div className="card-body">
                     <h2>{this.attr("title")}</h2>
                     <p className="card-text">{this.attr("text")}</p>
+                    <a className="btn btn-primary" href={this.attr("href")}>
+                        {this.attr("btn-text")}
+                    </a>
                 </div>
             </div>
         );
