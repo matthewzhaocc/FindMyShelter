@@ -50,5 +50,6 @@ def register():
             'password':hashlib.sha512(str.encode(flask.request.form['username'])).hexdigest
         }
     controller.newUser(payload,userid)
+    return flask.redirect(flask.url_for('/login'))
 
 app.run(host='0.0.0.0',port=5000,debug=True)
