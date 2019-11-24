@@ -20,7 +20,7 @@
     <!-- HEADER JUMBOTRON -->
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-4">{{ username }}</h1>
+            <h1 id="title" class="display-4">{{ username }}</h1>
             <p class="lead">Tel: {{ phone }} | Address: {{ address }} | Email: {{ email }}</p>
             <hr>
             <div class="btn-group">
@@ -35,11 +35,11 @@
     {% for shelter_data in shelters %}
     <div class="card">
         <div class="card-header">
-            <h1 class="display">{{ shelter_data[0]}}</h1>
+            <h1 class="display">{{ shelter_data[0] }}</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">Location: {{ shelter_data[1] }} | Open <input type="checkbox" checked={{ shelter_data[3] }} class="isOpen"></h5>
+            <p class="card-text">Remaining Capacity is {{ shelter_data[2] }}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
@@ -55,31 +55,37 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="javascript:;" onsubmit="login(this)"><div class="modal-body">
-                <label for="username">Username:</label>
-                <input required type="text" class="form-control" name="username" placeholder="Your name throughout the app...">
+            <form action="javascript:;" onsubmit="build(this)"><div class="modal-body">
+                <label for="username">Shelter Name:</label>
+                <input required type="text" class="form-control" name="username" placeholder="Your shelter...">
                 <hr>
-                <label for="password">Password:</label>
-                <input required type="password" class="form-control" name="password" placeholder="Let's keep this one a secret...">
+                <label for="capacity">Capacity:</label>
+                <input required type="text" class="form-control" name="capa" placeholder="How many people?">
                 <hr>
-                <label>Organization Or User?</label>
-                <div class="form-check">
-                    <input checked type="radio" class="form-check-input" name="usertype" value="user">
-                    <label class="form-check-label" for="usertype">User in need.</label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" name="usertype" value="org">
-                    <label class="form-check-label" for="usertype">Organization</label>
-                </div>
+                <label for="location">Location:</label>
+                <input required type="text" class="form-control" name="location" placeholder="Where?">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"></button>
+                <button type="submit" class="btn btn-primary">Create Shelter</button>
             </div></form>
             </div>
         </div>
-    </div>
+    </div>  
+<script>
+function build(frm){
+    const frmdata = new FormData(frm);
 
+    let req = new XMLHttpRequest();
+    req.open('POST', '/newShelters');
+
+    req.onreadystatechange = () => {
+        if (req.readyState == XMLHttpRequest.DONE) {
+            alert("Added shelter!");
+    }
+    req.send(frmdata);
+}
+</script>
 
     <!-- TOO MUCH JS -->
     <script src="https://kit.fontawesome.com/b8185e1d28.js" crossorigin="anonymous"></script>
@@ -88,7 +94,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/static/js/components.js"></script>
-    <script src="/static/js/user-login.js"></script>
 </body>
 </html>
