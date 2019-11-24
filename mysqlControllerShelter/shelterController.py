@@ -3,16 +3,16 @@ import json
 import math
 class shelterController:
     def __init__(self):
-        _conn = mysql.connector.connect(
+        self.conn = mysql.connector.connect(
             host='localhost',
             port=3306,
             user='matthew',
             passwd='696969696969',
             database='shelter'
         )
-        self.cursor = _conn.cursor()
-        self.conn = _conn
-        self.newShelterTemplate = 'INSERT INTO shelterLocations (Organization,name,location,Capacity,open) VALUES (%s,%s,%s,%s,%s)'
+        self.cursor = self.conn.cursor()
+        
+        self.newShelterTemplate = 'INSERT INTO shelterlocations (Organization,name,location,Capacity,open) VALUES (%s,%s,%s,%s,%s)'
         self.switchShelterStateTemplate = 'UPDATE shelterLocations open=%s WHERE name=%s'
         self.getStateTemplate = 'SELECT open FROM shelterLocations WHERE name=%s'
         self.getInfo = 'SELECT Organization,location,Capacity,open FROM shelterLocations WHERE=%s'
@@ -22,6 +22,7 @@ class shelterController:
     def newShelter(self,jsonPayload):
         val = (jsonPayload['Organization'],jsonPayload['name'],jsonPayload['location'],jsonPayload['Capacity'],jsonPayload['open'])
         self.cursor.execute(self.newShelterTemplate,val)
+
         self.conn.commit()
     
     def delOneCap(self,name):
