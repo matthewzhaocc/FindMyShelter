@@ -68,4 +68,5 @@ class shelterController:
     def shelterLength(self):
         self.cursor.execute('SELECT id FROM shelterLocations')
         return len(self.cursor.fetchall)
-        
+    
+    

@@ -93,7 +93,7 @@ def companyDashboard():
         'shelters': control.getAllShelterFromCompany(res[0])
     })
 
-@app.route('/search')
-def searchengine():
-    pass
+
+@app.route('/search', methods = ['GET'])
+
 app.run(host='0.0.0.0',port=5000,debug=True)
