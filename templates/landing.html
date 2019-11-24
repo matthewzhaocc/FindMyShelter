@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <title>FindMyShelter - Home</title>
+</head>
+<body onload="window.moreOpen = false;">
+    <!-- Background Overlay -->
+    <div id="background"></div>
+
+    <!-- REGULAR NAV -->
+    <div class="title-bar">
+        <h4 class="text-center display">FindMyShelter</h4>
+    </div>
+
+    <!-- HEADER JUMBOTRON -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">FindMyShelter...</h1>
+            <p class="lead">Connecting people in need with organizations who care and can help them.</p>
+            <hr>
+            <div class="btn-group">
+                <a data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+                <a data-toggle="modal" data-target="#signup" class="btn btn-success btn-lg" href="#" role="button">Signup</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER FOR SCREENSHOTS -->
+    <div class="container" style="text-align: center">
+        <feature-card
+            img="/static/img/screen/maps.png"
+            title="Intuitive Maps"
+            text="Using Google Maps, FindMyShelter lets you see exactly where the desired shelter is. With a click of a button, you can get directions to the shelter."
+            href="https://maps.google.com"
+            btn-text="Google Maps"
+        ></feature-card>
+        <feature-card
+            img="/static/img/screen/reserve.png"
+            title="Reserve Shelters"
+            text="Similar to the concept of hotels, shelters are temporary living areas with limits on people. You can reserve spots with one click."
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Find Shelters"
+        ></feature-card>
+        <feature-card
+            img="https://securityintelligence.com/wp-content/uploads/2016/09/corporate-trust-comes-to-the-c-suite-630x330.jpg"
+            title="Trust Your Organization!"
+            text="These organizations are trustable with all the information you can check on them!"
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Trustable organizations"
+        ></feature-card>
+        <feature-card
+            img="https://us.123rf.com/450wm/niroworld/niroworld1505/niroworld150500009/39663601-stock-vector-vector-green-check-mark-symbol-and-icon-on-checklist-with-pen-for-business-design-concept-and-web-gr.jpg?ver=6"
+            title="User friendly Lists"
+            text="Easy to navigate and to read."
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Start now"
+        ></feature-card>
+        <feature-card
+            img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfjlFu3bY6qZBTjiwaRsd8Kmx5qQQhvwy8V1Cs4MfBZzJRYnc-gQ&s"
+            title="Free of Cost"
+            text="It doesn't even cost a penny to join!"
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Join today!"
+        ></feature-card>
+        <feature-card
+            img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3ybp9cOW8Mk8B4wmFB9b8k-GDtzFKEGLYOb2TRy9jg310MHjx&s"
+            title="Connect with hundreds"
+            text="Get connected with hundreds of organizations nearby!"
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Connet Now!"
+        ></feature-card>
+    </div>
+    <br>
+
+    <!-- SIGNUP MODAL -->
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title display" id="exampleModalLabel">Signup:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="javascript:;" onsubmit="signup(this)"><div class="modal-body">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" required name="username" placeholder="Your name throughout the app...">
+                <hr>
+                <label for="password">Password:</label>
+                <input type="password" required class="form-control" name="password" placeholder="Let's keep this one a secret...">
+                <hr>
+                <label>Organization Or User?</label>
+                <br>
+                <div class="container">
+                    <input checked onclick="if(moreOpen) { document.getElementById('invisMoreButton').click(); moreOpen = false; }" type="radio" label="User in need." class="form-check-input" id="signUpUser" name="usertype" value="user">
+                </div>
+                <br>
+                <div class="container">
+                    <input type="radio" onclick="if(!moreOpen) { document.getElementById('invisMoreButton').click(); moreOpen = true; }" label="Organization" class="form-check-input" name="usertype" id="signUpOrg" value="org">
+                </div><br>
+                <br>
+                <a class="btn btn-primary" data-toggle="collapse" id="invisMoreButton" href="#moreDetails" hidden="true" aria-hidden="true">Invisible Toggle</a>
+                <div class="collapse multi-collapse card card-body" id="moreDetails" open="true">
+                    <label>Phone #:</label>
+                    <input id="phoneIgnore" class="form-control" type="text" required placeholder="e.g. +1 (234) 567-890">
+                    <hr>
+                    <label>Website:</label>
+                    <input id="websiteIgnore" class="form-control" type="text" required placeholder="e.g. https://example.com">
+                    <hr>
+                    <label>Email:</label>
+                    <input id="emailIgnore" class="form-control" type="email" required placeholder="e.g. foo.bar@example.com">
+                    <hr>
+                    <label>Address:</label>
+                    <input id="addressIgnore" class="form-control" type="text" required placeholder="e.g. 69 Foo Bar Plaza, Spam, Eggs">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Signup</button>
+            </div></form>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title display" id="exampleModalLabel">Login:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="javascript:;" onsubmit="login(this)"><div class="modal-body">
+                <label for="username">Username:</label>
+                <input required type="text" class="form-control" name="username" placeholder="Your name throughout the app...">
+                <hr>
+                <label for="password">Password:</label>
+                <input required type="password" class="form-control" name="password" placeholder="Let's keep this one a secret...">
+                <hr>
+                <label>Organization Or User?</label>
+                <div class="form-check">
+                    <input checked type="radio" class="form-check-input" name="usertype" value="user">
+                    <label class="form-check-label" for="usertype">User in need.</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="usertype" value="org">
+                    <label class="form-check-label" for="usertype">Organization</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div></form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOO MUCH JS -->
+    <script src="https://kit.fontawesome.com/b8185e1d28.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/raghav-misra/mesh/lib/prod/polyfill.js"></script>
+    <script src="/static/js/mesh.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/static/js/components.js"></script>
+    <script src="/static/js/user-login.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <title>FindMyShelter - {{ username }}</title>
+</head>
+<body>
+    <!-- Background Overlay -->
+    <div id="background" style="background: url('static/img/back_comp.png');"></div>
+
+    <!-- REGULAR NAV -->
+    <div class="title-bar">
+        <h4 class="text-center display">FindMyShelter</h4>
+    </div>
+
+    <!-- HEADER JUMBOTRON -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 id="title" class="display-4">{{ username }}</h1>
+            <p class="lead">Tel: {{ phone }} | Address: {{ address }} | Email: {{ email }}</p>
+            <hr>
+            <div class="btn-group">
+                <a data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg" href="#" role="button">Add Shelter</a>
+                <a class="btn btn-danger btn-lg" href="/logout" role="button">Sign Out</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- LEGIT SHELTER CARDS name,location,Capacity,open -->
+    {% for shelter_data in shelters %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="display">{{ shelter_data[0] }}</h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Location: {{ shelter_data[1] }}</h5>
+            <p class="card-text">Remaining Capacity is {{ shelter_data[2] }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- CREATE SHELTER -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title display" id="exampleModalLabel">Add A Shelter:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="javascript:;" onsubmit="build(this)"><div class="modal-body">
+                <label for="username">Shelter Name:</label>
+                <input required type="text" class="form-control" name="username" placeholder="Your shelter...">
+                <hr>
+                <label for="capacity">Capacity:</label>
+                <input required type="text" class="form-control" name="capa" placeholder="How many people?">
+                <hr>
+                <label for="location">Location:</label>
+                <input required type="text" class="form-control" name="location" placeholder="Where?">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"></button>
+                <button type="submit" class="btn btn-primary">Create Shelter</button>
+            </div></form>
+            </div>
+        </div>
+    </div>  
+<script>
+function build(frm){
+    const frmdata = new FormData(frm);
+
+    let req = new XMLHttpRequest();
+    req.open('POST', '/newShelters');
+
+    req.onreadystatechange = () => {
+        if (req.readyState == XMLHttpRequest.DONE) {
+            alert("Added shelter!");
+    }
+    req.send(frmdata);
+}}
+</script>
+
+    <!-- TOO MUCH JS -->
+    <script src="https://kit.fontawesome.com/b8185e1d28.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/raghav-misra/mesh/lib/prod/polyfill.js"></script>
+    <script src="/static/js/mesh.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+@import url('main.css');
+
+.jumbotron {
+    display: flex;
+    opacity: 0.875;
+}
+
+.jumbotron .container {
+    flex: 1;
+    width: 100vw;
+}
+
+#background {
+    background: url("/static/img/back.png");
+    position: fixed;
+    width: 100vw;;
+    height: 100vh;
+    z-index: -10;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
