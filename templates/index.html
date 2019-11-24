@@ -27,7 +27,7 @@
             <h2 class="display">Try it now!</h2>
             <br>
             <div class="input-group mb-3">
-                    <input placeholder="Type in your location..." type="search" class="form-control">
+                    <input id="searchbox" placeholder="Type in your location..." type="search" class="form-control">
                 <div class="input-group-append">
                     <button class="btn btn-warning" type="button" id="button-addon2">Search Shelters</button>
                 </div>
@@ -36,13 +36,20 @@
     </div>
 
     <!-- CONTAINER FOR SCREENSHOTS -->
-    <div class="container">
-        <feature-card
+    <div class="container card-columns" style="text-align: center">
+            <feature-card
             img="/static/img/screen/maps.png"
             title="Intuitive Maps"
-            text="Using Google Maps, FindMyShelter lets you see exactly where the desired shelter is down to the latitude and longitude if you wanted. With a click of a button, you can get directions to the shelter."
+            text="Using Google Maps, FindMyShelter lets you see exactly where the desired shelter is. With a click of a button, you can get directions to the shelter."
             href="https://maps.google.com"
             btn-text="Google Maps"
+        ></feature-card>
+        <feature-card
+            img="/static/img/screen/reserve.png"
+            title="Reserve Shelters"
+            text="Similar to the concept of hotels, shelters are temporary living areas with limits on people. You can reserve spots with one click."
+            href="javascript:(function(){ document.querySelector('#searchbox').focus(); location.href = '#searchbox'; })()"
+            btn-text="Find Shelters"
         ></feature-card>
     </div>
     <br>

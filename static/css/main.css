@@ -2,6 +2,7 @@
 
 * {
     font-family: "Barlow", sans-serif;
+    scroll-behavior: smooth;
 }
 
 .display-1, .display-2, .display-3, .display-4, .display {

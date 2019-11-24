@@ -12,17 +12,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-// Card Component 
+// Landing Page Card Component 
 var AttributeCard = /** @class */ (function (_super) {
     __extends(AttributeCard, _super);
     function AttributeCard() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     AttributeCard.prototype.render = function () {
-        return (Mesh.ce("div", { className: "card", style: "width: 18rem; display: inline-block;" },
+        return (Mesh.ce("div", { className: "card", style: "text-align: center; width: 18rem; vertical-align: top; display: inline-block;" },
             Mesh.ce("img", { className: "card-img-top", src: this.attr("img") }),
-            Mesh.ce("div", { className: "card-body" },
-                Mesh.ce("h2", null, this.attr("title")),
+            Mesh.ce("div", { className: "card-body", style: "text-align: center;" },
+                Mesh.ce("h5", { className: "display" }, this.attr("title")),
                 Mesh.ce("p", { className: "card-text" }, this.attr("text")),
                 Mesh.ce("a", { className: "btn btn-primary", href: this.attr("href") }, this.attr("btn-text")))));
     };
