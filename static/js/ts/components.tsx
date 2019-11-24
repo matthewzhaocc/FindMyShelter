@@ -4,7 +4,7 @@
 class AttributeCard extends Mesh.Component {
     render(){
         return (
-            <div className="card" style="text-align: center; width: 18rem; vertical-align: top; display: inline-block;">
+            <div className="card" style="text-align: center; margin: 10px; width: 18rem; vertical-align: top; display: inline-block;">
                 <img className="card-img-top" src={this.attr("img")}/>
                 <div className="card-body" style="text-align: center;">
                     <h5 className="display">{this.attr("title")}</h5>
@@ -18,3 +18,9 @@ class AttributeCard extends Mesh.Component {
     }
 }
 AttributeCard.define("feature-card");
+
+// Company Page Cards
+class CompanyShelter extends Mesh.Component {
+
+}
+CompanyShelter.define("company-shelter");

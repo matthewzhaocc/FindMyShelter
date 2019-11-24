@@ -7,9 +7,9 @@ import hashlib
 import random
 import base64
 
-from jsonStoreControllerUser.controller import jsonStoreController
+from mysqlControllerUser.controller import jsonStoreController
 from mysqlcontrollerCompanyUser.companyController import companyController
-
+from mysqlControllerShelter.shelterController import shelterController
 app = flask.Flask(__name__)
 
 
@@ -27,6 +27,8 @@ def login():
         "password": hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
     }
     control = jsonStoreController()
+    if userdata["usertype"] == 'org':
+        control = companyController()
     ans = control.getPassword(userdata['username'])
    
     ree = {
@@ -48,7 +50,7 @@ def register():
             'usertype':flask.request.form['usertype'],
             'username':flask.request.form['username'],
             'password':hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest(),
-            'details':'{ }'
+            'details':flask.request.form['details']
         }
         if payload['usertype'] == 'user':
             controller = jsonStoreController()
@@ -59,18 +61,39 @@ def register():
             controller.newCompanyUser(payload)
         return ' '
 
+@app.route('/newShelter', methods=['POST'])
+def newShelter():
+    if json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['usertype'] == 'user':
+        return ' '
+    
+    payload = {
+        'Organization':json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['username'],
+        'name':flask.request.form['name'],
+        'open':True,
+        'capacity':flask.request.form['']
+        }
+    controller = shelterController()
+    controller.newShelter(payload)
+    return ' '
+
 @app.route('/dashboard',methods=['GET'])
 def companyDashboard():
+    info = json.loads(base64.b64decode(flask.request.cookies.get('info')))
+    controller = companyController()
+    res = controller.getInfo(info['username'])
+    print(res)
+    details = json.loads(res[1])
+    control = shelterController()
+
     return flask.render_template('organization.html', **{
-        'username' : 'urgaymom',
-        'phone': 'your gay dad',
-        'address': 'your gay brother',
-        'data':json.dumps({
-            'urparents':'huge pussies'
-        })
+        'username' : res[0],
+        'phone': details['phone'],
+        'address': details['address'],
+        'email': details['email'],
+        'shelters': control.getAllShelterFromCompany(res[0])
     })
 
-@app.route('/searchengine')
+@app.route('/search')
 def searchengine():
     pass
 app.run(host='0.0.0.0',port=5000,debug=True)

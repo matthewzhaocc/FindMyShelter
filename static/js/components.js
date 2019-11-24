@@ -19,7 +19,7 @@ var AttributeCard = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     AttributeCard.prototype.render = function () {
-        return (Mesh.ce("div", { className: "card", style: "text-align: center; width: 18rem; vertical-align: top; display: inline-block;" },
+        return (Mesh.ce("div", { className: "card", style: "text-align: center; margin: 10px; width: 18rem; vertical-align: top; display: inline-block;" },
             Mesh.ce("img", { className: "card-img-top", src: this.attr("img") }),
             Mesh.ce("div", { className: "card-body", style: "text-align: center;" },
                 Mesh.ce("h5", { className: "display" }, this.attr("title")),

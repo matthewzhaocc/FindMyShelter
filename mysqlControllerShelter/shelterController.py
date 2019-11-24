@@ -1,22 +1,24 @@
 import mysql.connector
 import json
-
+import math
 class shelterController:
     def __init__(self):
-        self.conn = mysql.connector.connect(
+        _conn = mysql.connector.connect(
             host='localhost',
             port=3306,
             user='matthew',
             passwd='ABab12$$',
             database='shelter'
         )
-        self.cursor = self.conn.cursor()
+        self.cursor = _conn.cursor()
+        self.conn = _conn
         self.newShelterTemplate = 'INSERT INTO shelterLocations (Organization,name,location,Capacity,open) VALUES (%s,%s.%s.%s,%s)'
         self.switchShelterStateTemplate = 'UPDATE shelterLocations open=%s WHERE name=%s'
         self.getStateTemplate = 'SELECT open FROM shelterLocations WHERE name=%s'
         self.getInfo = 'SELECT Organization,location,Capacity,open FROM shelterLocations WHERE=%s'
         self.capacityMinusOne = 'UPDATE shelterLocations Capacity = Capcity - 1 WHERE name=%s'
-        self.capacityAddOne = 'UPDATE shelterLocation Capacity = Capacity + 1 WHERE name=%s'
+        self.capacityAddOne = 'UPDATE shelterLocations Capacity = Capacity + 1 WHERE name=%s'
+        self.getAllShelterFromCompanyTem = 'SELECT name,location,Capacity,open FROM shelterLocations WHERE Organization=%s'
     def newShelter(self,jsonPayload):
         val = (jsonPayload['Organization'],jsonPayload['name'],jsonPayload['location'],jsonPayload['Capacity'],jsonPayload['open'])
         self.cursor.execute(self.newShelterTemplate,val)
@@ -56,3 +58,14 @@ class shelterController:
                 self.cursor.execute(self.capacityAddOne)
             self.conn.commit()
             self.conn.close()
+    
+    def getAllShelterFromCompany(self,Organization):
+        val = (Organization,)
+        self.cursor.execute(self.getAllShelterFromCompanyTem,val)
+        res = self.cursor.fetchall()
+        return res
+    
+    def shelterLength(self):
+        self.cursor.execute('SELECT id FROM shelterLocations')
+        return len(self.cursor.fetchall)
+        
