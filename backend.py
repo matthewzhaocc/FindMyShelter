@@ -12,7 +12,10 @@ from jsonStoreControllerUser.controller import jsonStoreController
 
 app = flask.Flask(__name__)
 
+global userid
+
 userid = 0
+
 @app.route('/',methods = ['GET'])
 def rootPage():
     return flask.render_template('index.html')
@@ -48,8 +51,8 @@ def register():
             'username':flask.request.form['username'],
             'password':hashlib.sha512(str.encode(flask.request.form['username'])).hexdigest
         }
-    controller.newUser(payload,userid)
-    return flask.redirect(flask.url_for('/login'))
+        controller.newUser(payload,userid)
+        return flask.redirect(flask.url_for('/login'))
 
 @app.route('/company/dashboard',methods=['GET','POST'])
 def companyDashboard():
