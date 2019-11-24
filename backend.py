@@ -93,7 +93,14 @@ def companyDashboard():
         'shelters': control.getAllShelterFromCompany(res[0])
     })
 
+@app.route('/logout')
+def logout():
+    tres = flask.make_response(flask.redirect("/"))
+    tres.set_cookie("info", " ")
+    return tres
 
-@app.route('/search', methods = ['GET'])
 
+@app.route('/search')
+def searchengine():
+    pass
 app.run(host='0.0.0.0',port=5000,debug=True)

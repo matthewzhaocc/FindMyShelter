@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- Background Overlay -->
-    <div id="background"></div>
+    <div id="background" style="background: url('static/img/back_comp.png');"></div>
 
     <!-- REGULAR NAV -->
     <div class="title-bar">
@@ -23,7 +23,10 @@
             <h1 class="display-4">{{ username }}</h1>
             <p class="lead">Tel: {{ phone }} | Address: {{ address }} | Email: {{ email }}</p>
             <hr>
-            <a data-toggle="modal" data-target="#login" class="btn btn-success btn-lg" href="#" role="button">Add A Shelter</a>
+            <div class="btn-group">
+                <a data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg" href="#" role="button">Add Shelter</a>
+                <a class="btn btn-danger btn-lg" href="/logout" role="button">Sign Out</a>
+            </div>
         </div>
         </div>
     </div>
@@ -32,14 +35,14 @@
     {% for shelter_data in shelters %}
     <div class="card">
         <div class="card-header">
-          <h1 class="display">{{ shelter_data[0]}}</h1>
+            <h1 class="display">{{ shelter_data[0]}}</h1>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
-      </div>
+    </div>
     {% endfor %}
 
     <!-- CREATE SHELTER -->

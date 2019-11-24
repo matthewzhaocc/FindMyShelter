@@ -9,7 +9,7 @@ class companyController:
             host='localhost',
             user='matthew',
             database='login',
-            passwd='ABab12$$'
+            passwd='696969696969'
         )
         self.newCompanyUserTemplate = 'INSERT INTO companyUserDatabase (username,password,usertype,details) VALUES (%s,%s,%s,%s)'
         self.getUserTemplate = 'SELECT password, usertype FROM companyUserDatabase WHERE username = %s'

@@ -24,5 +24,5 @@ CREATE TABLE shelterLocations(
     name VARCHAR(255) NOT NULL,
     location VARCHAR(255) NOT NULL,
     Capacity INT NOT NULL,
-    open BOOLEAN NOT NULL,
+    open BOOLEAN NOT NULL
 );

@@ -8,7 +8,7 @@ class jsonStoreController:
             port = '3306',
             database='login',
             user='matthew',
-            passwd='ABab12$$'
+            passwd='696969696969'
         )
         self.cursor = self.conn.cursor()
         self.newUserTemplate = 'INSERT INTO loginDatabase (username,password,usertype,shelter) VALUES (%s,%s,%s,%s)'
