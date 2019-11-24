@@ -6,6 +6,6 @@
     },
     "files": [
         "components.tsx",
-        "user-login.tsx"
+        "user-login.ts"
     ]
 }

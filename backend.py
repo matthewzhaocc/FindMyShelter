@@ -17,48 +17,42 @@ userid = 0
 
 @app.route('/',methods = ['GET'])
 def rootPage():
-    return flask.render_template('index.html')
+    return flask.render_template('landing.html')
 
 @app.route('/login', methods = ['POST'])
 def login():
     userdata = {
-        'usertype': flask.request.form['usertype'],
-        'username': flask.request.form['username'],
-        'password': hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
+        "usertype": flask.request.form['usertype'],
+        "username": flask.request.form['username'],
+        "password": hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
     }
     control = jsonStoreController()
-    ans = control.getUser(userdata['username'])
+    ans = control.getPassword(userdata['username'])
    
     res = {
-        'usertype':ans['usertype'],
-        'loginstatus':str(ans['password']==userdata['password']),
+        'usertype':ans[1],
+        'loginstatus':str(ans[0]==userdata["password"]),
         'username':userdata['username']
     }
     return flask.jsonify(res)
 
-@app.route('/register',methods = ['GET','POST'])
+@app.route('/register',methods = ['POST'])
 def register():
     global userid
-    if flask.request.method == 'GET':
-        return flask.render_template('register.html')
     if flask.request.method == 'POST':
         userid += 1
         controller = jsonStoreController()
         payload = {
             'usertype':flask.request.form['usertype'],
             'username':flask.request.form['username'],
-            'password':hashlib.sha512(str.encode(flask.request.form['username'])).hexdigest
+            'password':hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
         }
-        controller.newUser(payload,userid)
-        return flask.redirect(flask.url_for('login'))
+        
+        controller.newUser(payload)
+        return flask.redirect('/')
 
-@app.route('/company/dashboard',methods=['GET','POST'])
+@app.route('/dashboard',methods=['GET'])
 def companyDashboard():
-    if flask.request.method == 'GET':
-        return flask.render_template('companydashboard.html')
+    return flask.render_template('organization.html')
 
-@app.route('/user/dashboard',methods=['GET','POST'])
-def userDashboard():
-    if flask.request.method == 'POST':
-        return flask.render_template('userdashboard.html')
 app.run(host='0.0.0.0',port=5000,debug=True)

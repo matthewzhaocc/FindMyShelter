@@ -9,8 +9,7 @@ class jsonStoreControllerLocation:
         payload = {
             'name':locationName,
             'address':locationAddress,
-            'room':roomCount,
-            'id':locationid
+            'room':roomCount
         }
         requests.post(self.url+'/users/'+locationid, data=payload)
     

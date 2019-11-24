@@ -13,3 +13,13 @@ hr{
     border: none;
     border-top: white solid 1px;
 }
+
+.title-bar{
+    background: #303030;
+    margin: 0;
+    padding: 10px;
+}
+
+.title-bar h3{  
+    margin: 0 !important;
+}

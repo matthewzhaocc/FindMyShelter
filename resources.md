@@ -8,3 +8,4 @@ res = []
 
 for s in shelters:
     if  ()
+```
