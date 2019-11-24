@@ -69,4 +69,7 @@ class shelterController:
         self.cursor.execute('SELECT id FROM shelterLocations')
         return len(self.cursor.fetchall)
     
+    def getAllShelter(self):
+        self.cursor.execute('SELECT name,location,Capacity FROM shelterLocations')
+        return self.cursor.fetchall()
     
