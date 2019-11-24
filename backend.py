@@ -64,11 +64,8 @@ def register():
 
 @app.route('/newShelter', methods=['POST'])
 def newShelter():
-    if json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['usertype'] == 'user':
-        return ' '
-    
     payload = {
-        'Organization':json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['username'],
+        'Organization':(json.loads(base64.b64decode(str.encode(flask.request.cookies.get('info'))))['username']),
         'name':flask.request.form['name'],
         'open':True,
         'Capacity':flask.request.form['capacity'],
@@ -77,7 +74,7 @@ def newShelter():
     controller = shelterController()
     print(payload)
     controller.newShelter(payload)
-    return ' '
+    return flask.redirect(flask.url_for('companyDashboard'))
 
 @app.route('/dashboard',methods=['GET'])
 def companyDashboard():
@@ -107,17 +104,8 @@ def logout():
 def searchengine():
     controller = shelterController()
     allShelter = controller.getAllShelter()
-    resjson = {
-
-    }
-    for i in range(len(allShelter)):
-        temp = {
-            'name':allShelter[i][0],
-            'location':allShelter[i][1],
-            'Capacity':allShelter[i][2]
-        }
-        resjson.update({'shelter'+str(i):temp})
-    return flask.render_template('search.html',shelters=resjson)
+    
+    return flask.render_template('search.html',shelters=allShelter)
 
 @app.route('/newReservations',methods = ['POST'])
 def newReservations():

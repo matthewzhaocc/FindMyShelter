@@ -55,12 +55,12 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="javascript:;" onsubmit="build(this)"><div class="modal-body">
+            <form action="/newShelter" method="POST"><div class="modal-body">
                 <label for="username">Shelter Name:</label>
-                <input required type="text" class="form-control" name="username" placeholder="Your shelter...">
+                <input required type="text" class="form-control" name="name" placeholder="Your shelter...">
                 <hr>
                 <label for="capacity">Capacity:</label>
-                <input required type="text" class="form-control" name="capa" placeholder="How many people?">
+                <input required type="text" class="form-control" name="capacity" placeholder="How many people?">
                 <hr>
                 <label for="location">Location:</label>
                 <input required type="text" class="form-control" name="location" placeholder="Where?">
@@ -77,7 +77,7 @@ function build(frm){
     const frmdata = new FormData(frm);
 
     let req = new XMLHttpRequest();
-    req.open('POST', '/newShelters');
+    req.open('POST', '/newShelter', );
 
     req.onreadystatechange = () => {
         if (req.readyState == XMLHttpRequest.DONE) {
