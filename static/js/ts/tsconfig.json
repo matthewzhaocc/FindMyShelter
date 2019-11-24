@@ -5,6 +5,7 @@
         "outDir": "../"
     },
     "files": [
-        "components.tsx"
+        "components.tsx",
+        "user-login.tsx"
     ]
 }
