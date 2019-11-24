@@ -7,7 +7,7 @@ class shelterController:
             host='localhost',
             port=3306,
             user='matthew',
-            passwd='ABab12$$',
+            passwd='696969696969',
             database='shelter'
         )
         self.cursor = _conn.cursor()
