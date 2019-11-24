@@ -29,7 +29,7 @@ def login():
     control = jsonStoreController()
     if userdata["usertype"] == 'org':
         control = companyController()
-        
+
     ans = control.getPassword(userdata['username'])
    
     ree = {
@@ -103,5 +103,20 @@ def logout():
 
 @app.route('/search')
 def searchengine():
-    pass
+    controller = shelterController()
+    allShelter = controller.getAllShelter()
+    resjson = {
+
+    }
+
+    elements = ['name','location','Capacity']
+    for i in range(len(allShelter)):
+        temp = {
+            'name':allShelter[i][0],
+            'location':allShelter[i][1],
+            'Capacity':allShelter[i][2]
+        }
+        resjson.update({'shelter'+str(i):temp})
+    return flask.render_template('search.html',shelters=resjson)
+
 app.run(host='0.0.0.0',port=5000,debug=True)
