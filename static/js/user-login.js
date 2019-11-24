@@ -25,7 +25,7 @@ function signup(form) {
     req.open("POST", "/register");
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
-            alert("Your account has been added! Now log in with it!");
+
             //location.reload();
         }
     };
@@ -40,7 +40,7 @@ function login(form) {
     req.open("POST", "/login");
     req.onreadystatechange = function () {
         if (req.readyState == XMLHttpRequest.DONE) {
-            alert
+            alert("login!")
         }
     };
     // Send Request:
