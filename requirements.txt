@@ -1,5 +1,3 @@
 flask
 requests
-Flask-Mail
-pymongo
-twilio
+mysql-connector-python

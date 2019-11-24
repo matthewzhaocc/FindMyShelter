@@ -11,11 +11,12 @@ class jsonStoreController:
             passwd='ABab12$$'
         )
         self.cursor = self.conn.cursor()
-        self.newUserTemplate = 'INSERT INTO loginDatabase (username,password,usertype) VALUES (%s,%s,%s)'
+        self.newUserTemplate = 'INSERT INTO loginDatabase (username,password,usertype,shelter) VALUES (%s,%s,%s,%s)'
         self.getPasswordTemplate = 'SELECT password,usertype FROM loginDatabase WHERE username=%s'
+        self.changeShelter = 'UPDATE shelter SET shelter=%s WHERE username=%s'
 
     def newUser(self,jsonPayload):
-        val = (jsonPayload['username'],jsonPayload['password'],jsonPayload['usertype'])
+        val = (jsonPayload['username'],jsonPayload['password'],jsonPayload['usertype'],jsonPayload['shelter'])
         self.cursor.execute(self.newUserTemplate,val)
         self.conn.commit()
         self.conn.close()
@@ -25,3 +26,7 @@ class jsonStoreController:
         self.cursor.execute(self.getPasswordTemplate,val)
         return self.cursor.fetchone()
     
+    def newShelter(self,username,sheltername):
+        val=(sheltername,username)
+        self.cursor.execute(self.changeShelter,val)
+        self.conn.commit()

@@ -17,5 +17,4 @@ class AttributeCard extends Mesh.Component {
         );
     }
 }
-
 AttributeCard.define("feature-card");

@@ -6,9 +6,8 @@ import string
 import hashlib
 import random
 
-import pymongo
-
 from jsonStoreControllerUser.controller import jsonStoreController
+from mysqlcontrollerCompanyUser.companyController import companyController
 
 app = flask.Flask(__name__)
 
@@ -45,14 +44,27 @@ def register():
         payload = {
             'usertype':flask.request.form['usertype'],
             'username':flask.request.form['username'],
-            'password':hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest()
+            'password':hashlib.sha512(str.encode(flask.request.form['password'])).hexdigest(),
+            'details':'{ }'
         }
-        
-        controller.newUser(payload)
-        return flask.redirect('/')
+        if payload['usertype'] == 'user':
+            controller = jsonStoreController()
+            payload['shelter']=' '
+            controller.newUser(payload)
+        else:
+            controller = companyController()
+            controller.newCompanyUser(payload)
+        return ' '
 
 @app.route('/dashboard',methods=['GET'])
 def companyDashboard():
-    return flask.render_template('organization.html')
+    return flask.render_template('organization.html', **{
+        'username' : 'urgaymom',
+        'phone': 'your gay dad',
+        'address': 'your gay brother',
+        'data':json.dumps({
+            'urparents':'huge pussies'
+        })
+    })
 
 app.run(host='0.0.0.0',port=5000,debug=True)

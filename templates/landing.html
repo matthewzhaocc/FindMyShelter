@@ -27,7 +27,7 @@
             <h2 class="display">Try it now!</h2>
             <br>
             <div class="input-group mb-3">
-                    <input id="searchbox" placeholder="Type in your location..." type="search" class="form-control">
+                    <input id="searchbox" placeholder="Type in your city name..." type="search" class="form-control">
                 <div class="input-group-append">
                     <button class="btn btn-warning" type="button" id="button-addon2">Search Shelters</button>
                 </div>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- CONTAINER FOR SCREENSHOTS -->
-    <div class="container card-columns" style="text-align: center">
+    <div class="container" style="text-align: center">
             <feature-card
             img="/static/img/screen/maps.png"
             title="Intuitive Maps"
@@ -72,13 +72,20 @@
                 <input type="password" required class="form-control" name="password" placeholder="Let's keep this one a secret...">
                 <hr>
                 <label>Organization Or User?</label>
-                <div class="form-check">
-                    <input checked type="radio" class="form-check-input" name="usertype" value="user">
-                    <label class="form-check-label" for="usertype">User in need.</label>
+                <br>
+                <div class="container">
+                    <input checked type="radio" label="User in need." class="form-check-input" id="signUpUser" name="usertype" value="user">
                 </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" name="usertype" value="org">
-                    <label class="form-check-label" for="usertype">Organization</label>
+                <br>
+                <div class="container">
+                    <input type="radio" onclick="document.getElementById('invisMoreButton').click()" label="Organization" class="form-check-input" name="usertype" id="signUpOrg" value="org">
+                </div><br>
+                <br>
+                <a class="btn btn-primary" data-toggle="collapse" id="invisMoreButton" href="#moreDetails" hidden="true" aria-hidden="true">Invisible Toggle</a>
+                <div class="collapse multi-collapse" id="moreDetails">
+                    <div class="card card-body">
+                        <input type="tel"/>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

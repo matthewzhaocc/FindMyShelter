@@ -19,4 +19,4 @@ class companyController:
         self.conn.commit()
         self.conn.close()
     
-    
+

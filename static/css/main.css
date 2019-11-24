@@ -23,3 +23,17 @@ hr{
 .title-bar h3{  
     margin: 0 !important;
 }
+
+input[type=radio]::after {
+    content: attr(label);
+    display: inline-block;
+    color: white;
+    width: 200px;
+    position: relative;
+    bottom: 5px;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    left: 15px;
+}

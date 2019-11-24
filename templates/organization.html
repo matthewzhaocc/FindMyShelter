@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/index.css">
     <title>FindMyShelter - Home</title>
-    <script>const ORG_DATA = {{ more_data }};</script>
 </head>
 <body>
+    <span id="wtf" style="display: none; visibility: hidden;" hidden="true" aria-hidden="true">{{ data }}</span>
     <!-- Background Overlay -->
     <div id="background"></div>
 
@@ -22,7 +22,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">{{ username }}</h1>
-            <p class="lead">Tel: {{ p }}</p>
+            <p class="lead">Tel: {{ phone }} | Address: {{ address }}</p>
             <hr>
             <div class="btn-group">
                 <a data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg" href="#" role="button">Login</a>
@@ -33,6 +33,7 @@
     </div>
 
     <!-- TOO MUCH JS -->
+    <script>const ORG_DATA = document.querySelector("#wtf").innerText; alert(ORG_DATA);</script>
     <script src="https://kit.fontawesome.com/b8185e1d28.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/raghav-misra/mesh/lib/prod/polyfill.js"></script>
     <script src="/static/js/mesh.js"></script>
