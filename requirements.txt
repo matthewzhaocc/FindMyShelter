@@ -1,3 +1,4 @@
 flask
 requests
 mysql-connector-python
+protobuf>=3.18.3 # not directly required, pinned by Snyk to avoid a vulnerability
